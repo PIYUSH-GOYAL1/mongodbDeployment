@@ -15,17 +15,17 @@ dbConnect();
 
 app.get("/" , (req,res)=>{
     try{
-        res.render("index");
+        return res.render("index");
     }catch(err){
-        res.render("error" , {err});
+        return res.render("error" , {err});
     }
 });
 
 app.get("/getform" , (req,res)=>{
     try{
-        res.render("form");
+        return res.render("form");
     }catch(err){
-        res.render("error" , {err});
+        return res.render("error" , {err});
     }
 });
 
@@ -38,10 +38,10 @@ app.post("/processform" , async (req,res)=>{
             age : req.body.password,
         });
         await newUser.save();
-        res.redirect("/");
+        return res.redirect("/");
     }catch(err){
-        console.error("Error creating user:", error);
-        res.render("error" , {err});
+        console.error("Error creating user:", err);
+        return res.render("error" , {err});
     }
 });
 
