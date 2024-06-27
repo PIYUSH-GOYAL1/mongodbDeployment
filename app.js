@@ -35,7 +35,7 @@ app.post("/processform" , async (req,res)=>{
             fullname : req.body.fullname,
             email : req.body.email,
             password : req.body.password,
-            age : req.body.password,
+            age : req.body.age,
         });
         await newUser.save();
         return res.redirect("/");
