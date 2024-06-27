@@ -31,14 +31,16 @@ app.get("/getform" , (req,res)=>{
 
 app.post("/processform" , async (req,res)=>{
     try{
-        const newUser = await userModel.create({
+        const newUser = new userModel({
             fullname : req.body.fullname,
             email : req.body.email,
             password : req.body.password,
             age : req.body.password,
         });
+        await newUser.save();
         res.redirect("/");
     }catch(err){
+        console.error("Error creating user:", error);
         res.render("error" , {err});
     }
 });
